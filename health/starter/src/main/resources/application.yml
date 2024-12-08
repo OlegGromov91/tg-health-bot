@@ -1,0 +1,10 @@
+server:
+  port: 8097
+
+bot:
+  name: "your_own_health_helper_bot"
+  token: ""
+  file-info: "https://api.telegram.org/bot{token}/getFile?file_id={fileId}"
+  file-storage: "https://api.telegram.org/file/bot{token}/{filePath}"
+  mock:
+    enabled: false
