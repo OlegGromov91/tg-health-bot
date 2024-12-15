@@ -28,6 +28,15 @@ public class HealthBotImpl extends TelegramLongPollingBot implements HealthBot<U
         onUpdateReceived(update);
     }
 
+    /**
+     * Диалог следующий:
+     * кидаешь файл
+     * он отправляет кнопки с текстом выберите тип посещения: "сдача анализов" "посещение врача" "операция" "манипуляции"
+     * дальше кидает кнопки с алфавитом с вопросом "на какую букву начинается специальность врача?"
+     * дальше кнопки по специальности
+     * возможно стоит рассмотреть кнопку другое
+     */
+
     @Override
     public void onUpdateReceived(Update update) {
         try {
