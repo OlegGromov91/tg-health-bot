@@ -19,8 +19,6 @@ public class MessageResolver {
     @Lazy
     private List<MessageProcessor> processors = new ArrayList<>();
 
-    @Autowired
-    private TestProcessorTwo testProcessorTwo;
 
     public BotApiMethod<? extends Serializable> resolve(Update update) {
         MessageProcessor messageProcessor = findResolver(update);
@@ -29,7 +27,7 @@ public class MessageResolver {
 
     private MessageProcessor findResolver(Update update) {
         return processors.stream()
-                .filter(resolver -> resolver.identifyResolver(update))
+                .filter(resolver -> resolver.identify(update))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Can not find resolver"));
     }
