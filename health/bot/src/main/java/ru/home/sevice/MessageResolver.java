@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.home.sevice.processor.base.MessageProcessor;
+import ru.home.sevice.processor.base.UpdateProcessor;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -13,15 +14,15 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class MessageResolver {
 
-    private final Set<MessageProcessor> processors;
+    private final Set<UpdateProcessor> processors;
 
 
     public BotApiMethod<? extends Serializable> resolve(Update update) {
-        MessageProcessor messageProcessor = findResolver(update);
-        return messageProcessor.process(update);
+        UpdateProcessor processor = findResolver(update);
+        return processor.process(update);
     }
 
-    private MessageProcessor findResolver(Update update) {
+    private UpdateProcessor findResolver(Update update) {
         return processors.stream()
                 .filter(resolver -> resolver.identify(update))
                 .findFirst()

@@ -3,11 +3,14 @@ package ru.home.bot;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.polls.SendPoll;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.home.bot.variable.UpdateMessage;
 import ru.home.config.BotProperties;
 import ru.home.sevice.MessageResolver;
+
+import java.util.List;
 
 @Service
 @ConditionalOnProperty(value = "bot.mock.enabled", havingValue = "false", matchIfMissing = true)
