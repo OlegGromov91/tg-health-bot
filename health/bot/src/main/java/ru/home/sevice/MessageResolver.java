@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.home.sevice.resolver.BotResolver;
+import ru.home.sevice.processor.base.MessageProcessor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,16 +15,20 @@ import java.util.List;
 public class MessageResolver {
 
     @Autowired
+
     @Lazy
-    private List<BotResolver> resolvers = new ArrayList<>();
+    private List<MessageProcessor> processors = new ArrayList<>();
+
+    @Autowired
+    private TestProcessorTwo testProcessorTwo;
 
     public BotApiMethod<? extends Serializable> resolve(Update update) {
-        BotResolver botResolver = extractResolver(update);
-        return botResolver.resolve(update);
+        MessageProcessor messageProcessor = findResolver(update);
+        return messageProcessor.process(update);
     }
 
-    private BotResolver extractResolver(Update update) {
-        return resolvers.stream()
+    private MessageProcessor findResolver(Update update) {
+        return processors.stream()
                 .filter(resolver -> resolver.identifyResolver(update))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Can not find resolver"));

@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 
+@Getter
 @Configuration
 @ConfigurationProperties(prefix = "bot")
 public class BotProperties {
@@ -13,22 +14,6 @@ public class BotProperties {
     private String token;
     private String fileInfo;
     private String fileStorage;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public String getFileInfo() {
-        return fileInfo;
-    }
-
-    public String getFileStorage() {
-        return fileStorage;
-    }
 
     public void setName(String name) {
         this.name = name;
