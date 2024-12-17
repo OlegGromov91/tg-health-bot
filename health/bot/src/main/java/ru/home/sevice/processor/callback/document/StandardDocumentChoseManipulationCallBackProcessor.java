@@ -9,13 +9,13 @@ import ru.home.sevice.processor.base.callback.CallBackProcessor;
 import ru.home.sevice.processor.base.common.callback.CallBackMapping;
 
 import static ru.home.sevice.processor.base.common.callback.CallBackMapping.CallBackType.CHOSE_MANIPULATION;
-import static ru.home.sevice.processor.utils.MarkupGenerator.generateTwoRawButtons;
+import static ru.home.sevice.processor.utils.MarkupGenerator.generateKeyboard;
 
 
 @Component
 public class StandardDocumentChoseManipulationCallBackProcessor implements CallBackProcessor, MessageProvider {
 
-    private final InlineKeyboardMarkup keyboard = generateTwoRawButtons(CallBackMapping.CallBackType.ALPHABET_DOCTORS_SPEC);
+    private final InlineKeyboardMarkup keyboard = generateKeyboard(CallBackMapping.CallBackType.ALPHABET_DOCTORS_SPEC, 4);
 
     @Override
     public CallBackMapping.CallBackType callBackType() {

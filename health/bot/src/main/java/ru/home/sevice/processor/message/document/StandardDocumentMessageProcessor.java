@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static ru.home.sevice.processor.utils.MarkupGenerator.generateTwoRawButtons;
+import static ru.home.sevice.processor.utils.MarkupGenerator.generateKeyboard;
 
 @Component
 public class StandardDocumentMessageProcessor implements DocumentMessageProcessor {
@@ -22,7 +22,7 @@ public class StandardDocumentMessageProcessor implements DocumentMessageProcesso
             .map(TgMimeTypes::getMimeType)
             .collect(Collectors.toSet());
 
-    private final InlineKeyboardMarkup inlineKeyboardMarkup = generateTwoRawButtons(CallBackMapping.CallBackType.CHOSE_MANIPULATION);
+    private final InlineKeyboardMarkup inlineKeyboardMarkup = generateKeyboard(CallBackMapping.CallBackType.CHOSE_MANIPULATION, 2);
 
 
     @Override

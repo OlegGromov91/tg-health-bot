@@ -13,18 +13,18 @@ public class MarkupGenerator {
     private static final Map<CallBackMapping.CallBackType, List<InlineKeyboardButton>> BUTTONS = initButtons();
 
 
-    public static InlineKeyboardMarkup generateTwoRawButtons(CallBackMapping.CallBackType callBackType) {
-        List<InlineKeyboardButton> buttons = Optional.ofNullable(BUTTONS.get(callBackType)).orElse(List.of());
-        List<List<InlineKeyboardButton>> resultMatrixButton = new ArrayList<>((buttons.size() / 2) + 1);
-        List<InlineKeyboardButton> twoButtons = new ArrayList<>(2);
-        for (int i = 0; i < buttons.size(); i++) {
-            if (i != 0 && i % 2 == 0) {
-                resultMatrixButton.add(twoButtons);
-                twoButtons = new ArrayList<>(2);
+    public static InlineKeyboardMarkup generateKeyboard(CallBackMapping.CallBackType callBackType, int maxRawSize) {
+        List<InlineKeyboardButton> allButtons = Optional.ofNullable(BUTTONS.get(callBackType)).orElse(List.of());
+        List<List<InlineKeyboardButton>> resultMatrixButton = new ArrayList<>();
+        List<InlineKeyboardButton> buttons = new ArrayList<>(maxRawSize);
+        for (int i = 0; i < allButtons.size(); i++) {
+            if (i != 0 && i % maxRawSize == 0) {
+                resultMatrixButton.add(buttons);
+                buttons = new ArrayList<>(maxRawSize);
             }
-            twoButtons.add(buttons.get(i));
-            if (i == buttons.size() - 1) {
-                resultMatrixButton.add(twoButtons);
+            buttons.add(allButtons.get(i));
+            if (i == allButtons.size() - 1) {
+                resultMatrixButton.add(buttons);
             }
         }
         return InlineKeyboardMarkup.builder()
