@@ -12,7 +12,8 @@ import java.util.Optional;
 public interface CallBackProcessor extends UpdateProcessor {
 
     default BotApiMethod<? extends Serializable> process(Update update) {
-        return processCallBack(update.getCallbackQuery());
+        return (isNeedBackWay(update.getCallbackQuery())) ? processBackWayCallBack(update.getCallbackQuery())
+                : processCallBack(update.getCallbackQuery());
     }
 
     default boolean identify(Update update) {
@@ -28,6 +29,8 @@ public interface CallBackProcessor extends UpdateProcessor {
     CallBackMapping.CallBackType callBackType();
 
     BotApiMethod<? extends Serializable> processCallBack(CallbackQuery callback);
+
+    BotApiMethod<? extends Serializable> processBackWayCallBack(CallbackQuery callback);
 
     default boolean isNeedBackWay(CallbackQuery callback) {
         return CallBackMapping.getCallBack(callback.getData())
