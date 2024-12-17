@@ -18,7 +18,7 @@ public interface CallBackProcessor extends UpdateProcessor {
     default boolean identify(Update update) {
         return Optional.ofNullable(update.getCallbackQuery())
                 .map(CallbackQuery::getData)
-                .map(data -> CallBackMapping.isCanProcessCallBack(data, callBackType()))
+                .map(data -> CallBackMapping.isCanProcessCallBack(data, callBackType()) || CallBackMapping.isBackWayCallBack(data, callBackType()))
                 .orElse(false);
     }
 
@@ -28,6 +28,12 @@ public interface CallBackProcessor extends UpdateProcessor {
     CallBackMapping.CallBackType callBackType();
 
     BotApiMethod<? extends Serializable> processCallBack(CallbackQuery callback);
+
+    default boolean isNeedBackWay(CallbackQuery callback) {
+        return CallBackMapping.getCallBack(callback.getData())
+                .map(CallBackMapping::isBackWayData)
+                .orElse(false);
+    }
 
 
 }
