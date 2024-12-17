@@ -44,11 +44,11 @@ public enum CallBackMapping {
     private final String data;
     private final CallBackType callBackType;
 
-    private static final Map<String, CallBackMapping> callBackMappings = Arrays.stream(values())
+    private static final Map<String, CallBackMapping> CALL_BACK_MAPPINGS = Arrays.stream(values())
             .collect(Collectors.toUnmodifiableMap(CallBackMapping::name, value -> value));
 
     public static boolean isCanProcessCallBack(String callBackData, CallBackType callBackType) {
-        return Optional.ofNullable(callBackMappings.get(callBackData))
+        return Optional.ofNullable(CALL_BACK_MAPPINGS.get(callBackData))
                 .map(CallBackMapping::getCallBackType)
                 .map(innerCallBackType -> innerCallBackType == callBackType)
                 .orElse(false);
