@@ -2,6 +2,7 @@ package ru.home.sevice.processor.base;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 public interface MessageProvider {
@@ -28,4 +29,15 @@ public interface MessageProvider {
                 .replyMarkup(markup)
                 .build();
     }
+
+    default EditMessageText buildEditMessageText(Long chatId, Integer messageId, InlineKeyboardMarkup markup, String text) {
+        return EditMessageText.builder()
+                .text(text)
+                .chatId(chatId)
+                .messageId(messageId)
+                .replyMarkup(markup)
+                .build();
+    }
+
+
 }

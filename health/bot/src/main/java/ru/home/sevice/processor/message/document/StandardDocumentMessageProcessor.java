@@ -31,7 +31,7 @@ public class StandardDocumentMessageProcessor implements DocumentMessageProcesso
 
     @Override
     public SendMessage processDocument(Document document, String additionalText, Long chatId) {
-        return buildMessage(chatId, "Выберите тип посещения", choseManipulationKeyboard);
+        return buildMessage(chatId, "Выберите тип посещения, затем по алфавиту найдите врача", choseManipulationKeyboard);
     }
 
 }
