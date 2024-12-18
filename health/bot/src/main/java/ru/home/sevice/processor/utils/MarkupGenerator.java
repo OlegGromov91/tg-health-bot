@@ -6,6 +6,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import ru.home.sevice.processor.base.common.callback.CallBackMapping;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @UtilityClass
 public class MarkupGenerator {
@@ -14,6 +16,15 @@ public class MarkupGenerator {
 
     public static InlineKeyboardMarkup generateKeyboard(CallBackMapping.CallBackType callBackType, int maxRawSize) {
         List<InlineKeyboardButton> allButtons = BUTTONS.getOrDefault(callBackType, List.of());
+        return generateKeyboard(allButtons, maxRawSize);
+    }
+
+    public static InlineKeyboardMarkup generateKeyboard(CallBackMapping.CallBackType callBackType, int maxRawSize, Predicate<InlineKeyboardButton> buttonTemplateFilter) {
+        List<InlineKeyboardButton> allButtons = BUTTONS.getOrDefault(callBackType, List.of()).stream().filter(buttonTemplateFilter).collect(Collectors.toList());
+        return generateKeyboard(allButtons, maxRawSize);
+    }
+
+    private static InlineKeyboardMarkup generateKeyboard(List<InlineKeyboardButton> allButtons, int maxRawSize) {
 
         List<InlineKeyboardButton> allButtonsWithoutBackButton = allButtons
                 .stream()

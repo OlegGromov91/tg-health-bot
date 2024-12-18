@@ -3,11 +3,7 @@ package ru.home.sevice.processor.base.common.callback;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,27 +19,27 @@ public enum CallBackMapping {
     OPERATION("Операция", CallBackType.CHOSE_MANIPULATION, CallBackType.NONE),
 
     //Алфавит профессий врачей
-    ALPHABET_DOCTORS_SPEC_A("А", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_B("Б", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_V("В", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_G("Г", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_D("Д", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_I("И", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_K("К", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_L("Л", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_M("М", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_N("Н", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_O("О", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_P("П", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_R("Р", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_S("С", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_T("Т", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_Y("У", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_F("Ф", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_X("Х", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_CH("Ч", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_EE("Э", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
-    ALPHABET_DOCTORS_SPEC_BACK("Назад", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.CHOSE_MANIPULATION),
+    A_ALPHABET_DOCTORS_SPEC("А", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    B_ALPHABET_DOCTORS_SPEC("Б", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    C_ALPHABET_DOCTORS_SPEC("Ч", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    D_ALPHABET_DOCTORS_SPEC("Д", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    E_ALPHABET_DOCTORS_SPEC("Э", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    F_ALPHABET_DOCTORS_SPEC("Ф", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    G_ALPHABET_DOCTORS_SPEC("Г", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    H_ALPHABET_DOCTORS_SPEC("Х", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    I_ALPHABET_DOCTORS_SPEC("И", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    K_ALPHABET_DOCTORS_SPEC("К", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    L_ALPHABET_DOCTORS_SPEC("Л", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    M_ALPHABET_DOCTORS_SPEC("М", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    N_ALPHABET_DOCTORS_SPEC("Н", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    O_ALPHABET_DOCTORS_SPEC("О", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    P_ALPHABET_DOCTORS_SPEC("П", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    R_ALPHABET_DOCTORS_SPEC("Р", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    S_ALPHABET_DOCTORS_SPEC("С", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    T_ALPHABET_DOCTORS_SPEC("Т", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    U_ALPHABET_DOCTORS_SPEC("У", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    V_ALPHABET_DOCTORS_SPEC("В", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.NONE),
+    BACK_ALPHABET_DOCTORS_SPEC("Назад", CallBackType.ALPHABET_DOCTORS_SPEC, CallBackType.CHOSE_MANIPULATION),
 
     A_DOCTORS_SPEC_AKUSHER("Акушер", CallBackType.DOCTORS_SPEC, CallBackType.NONE),
     A_DOCTORS_SPEC_AKUSHER_GINEKOLOG("Акушер-гинеколог", CallBackType.DOCTORS_SPEC, CallBackType.NONE),
@@ -165,6 +161,7 @@ public enum CallBackMapping {
     V_DOCTORS_SPEC_VRACH_OBSCHEY_PRAKTIKI("Врач общей практики", CallBackType.DOCTORS_SPEC, CallBackType.NONE),
     V_DOCTORS_SPEC_VRACH_SPORTIVNOY_MEDICINY("Врач спортивной медицины", CallBackType.DOCTORS_SPEC, CallBackType.NONE),
     V_DOCTORS_SPEC_VRACH_ULTRAZVUKOVOY_DIAGNOSTIKI("Врач ультразвуковой диагностики", CallBackType.DOCTORS_SPEC, CallBackType.NONE),
+    BACK_DOCTORS_SPEC("Назад", CallBackType.DOCTORS_SPEC, CallBackType.ALPHABET_DOCTORS_SPEC),
     ;
 
     public static final String BACK_CALL_BACK_DATA = "Назад";
@@ -183,6 +180,7 @@ public enum CallBackMapping {
 
     public static boolean isCanProcessCallBack(String callBackData, CallBackType callBackType) {
         return Optional.ofNullable(CALL_BACK_MAPPINGS.get(callBackData))
+                .filter(CallBackMapping::isNotBackWayData)
                 .map(CallBackMapping::getCallBackType)
                 .map(innerCallBackType -> innerCallBackType == callBackType)
                 .orElse(false);

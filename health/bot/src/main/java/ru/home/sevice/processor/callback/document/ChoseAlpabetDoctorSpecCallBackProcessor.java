@@ -11,30 +11,32 @@ import ru.home.sevice.processor.base.callback.CallBackProcessor;
 import ru.home.sevice.processor.base.common.callback.CallBackMapping;
 
 import java.io.Serializable;
+import java.util.Map;
 
-import static ru.home.sevice.processor.base.common.callback.CallBackMapping.CallBackType.CHOSE_MANIPULATION;
+import static ru.home.sevice.processor.base.common.callback.CallBackMapping.CallBackType.ALPHABET_DOCTORS_SPEC;
 
 
 @Component
 @RequiredArgsConstructor
-public class StandardDocumentChoseManipulationCallBackProcessor implements CallBackProcessor, MessageProvider {
+public class ChoseAlpabetDoctorSpecCallBackProcessor implements CallBackProcessor, MessageProvider {
 
+    private final Map<String, InlineKeyboardMarkup> alphabetWithDoctorsSpecButtonMapping;
     private final InlineKeyboardMarkup alphabetDoctorsSpecKeyboard;
-    private final InlineKeyboardMarkup choseManipulationKeyboard;
 
     @Override
     public CallBackMapping.CallBackType callBackType() {
-        return CHOSE_MANIPULATION;
+        return ALPHABET_DOCTORS_SPEC;
     }
 
     @Override
     public EditMessageReplyMarkup processCallBack(CallbackQuery callback) {
-        return buildEditMessage(callback.getMessage().getChatId(), callback.getMessage().getMessageId(), alphabetDoctorsSpecKeyboard);
+        return buildEditMessage(callback.getMessage().getChatId(), callback.getMessage().getMessageId(),
+                alphabetWithDoctorsSpecButtonMapping.get(callback.getData()));
     }
 
     @Override
     public BotApiMethod<? extends Serializable> processBackWayCallBack(CallbackQuery callback) {
-        return buildEditMessage(callback.getMessage().getChatId(), callback.getMessage().getMessageId(), choseManipulationKeyboard);
+        return buildEditMessage(callback.getMessage().getChatId(), callback.getMessage().getMessageId(), alphabetDoctorsSpecKeyboard);
     }
 
 
